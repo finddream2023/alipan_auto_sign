@@ -3,6 +3,13 @@
 refresh_token=$1
 #pushplus_token
 pushplus_token=$2
+
+# 生成 1 到 50 之间的随机数，并转换成秒数
+delay_min=$(( (RANDOM % 50) + 1 ))
+sleep_time=$(( $delay_min * 60 ))
+# 等待随机时间后执行实际任务
+sleep $sleep_time
+
 ##获取access_token
 echo $refresh_token
 access_token_command="curl --location --request POST 'https://auth.aliyundrive.com/v2/account/token' --header 'Content-Type: application/json' --data '{
